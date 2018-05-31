@@ -44,11 +44,11 @@
     state: "{{ item.state }}"
     definition: "{{ lookup('template', item.name) | from_yaml }}"
   with_items:
-    - name: service.yaml
+    - name: service.yaml.j2
       state: "{{ state }}"
-    - name: pvc.yaml
+    - name: pvc.yaml.j2
       state: "{{ state if _apb_plan_id == 'prod' else 'absent' }}"
-    - name: deployment.yaml
+    - name: deployment.yaml.j2
       state: "{{ state }}"
 
 - name: "Update last operation"
